@@ -1,0 +1,928 @@
+package com.sample.rules
+
+import com.sample.Interfejs
+import java.util.ArrayList
+import java.util.List
+
+
+declare Odpowiedz
+    pytanie : String
+    odpowiedz : String
+end
+
+
+
+rule "Start"
+    when
+        not Odpowiedz()
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("No");
+        warianty.add("Yes");
+        
+        String odp = Interfejs.zapytaj("A cartoon based on a video game?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("A cartoon based on a video game?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "A cartoon based on a video game? - Yes - A Nintendo franchise?"
+    when
+        Odpowiedz(pytanie == "A cartoon based on a video game?", odpowiedz == "Yes")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("A Nintendo franchise?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("A Nintendo franchise?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "A Nintendo franchise? - Yes - The Super Mario Bros. Super Show"
+    when Odpowiedz(pytanie == "A Nintendo franchise?", odpowiedz == "Yes")
+    then Interfejs.polec("The Super Mario Bros. Super Show");
+end
+
+rule "A Nintendo franchise? - Yes - Captain N The Game Master"
+    when Odpowiedz(pytanie == "A Nintendo franchise?", odpowiedz == "Yes")
+    then Interfejs.polec("Captain N The Game Master");
+end
+
+rule "A Nintendo franchise? - Yes - The Adventures of Super Mario Bros. 3"
+    when Odpowiedz(pytanie == "A Nintendo franchise?", odpowiedz == "Yes")
+    then Interfejs.polec("The Adventures of Super Mario Bros. 3");
+end
+
+rule "A Nintendo franchise? - Yes - Super Mario World"
+    when Odpowiedz(pytanie == "A Nintendo franchise?", odpowiedz == "Yes")
+    then Interfejs.polec("Super Mario World");
+end
+
+rule "A Nintendo franchise? - Yes - The Legend of Zelda"
+    when Odpowiedz(pytanie == "A Nintendo franchise?", odpowiedz == "Yes")
+    then Interfejs.polec("The Legend of Zelda");
+end
+
+rule "A Nintendo franchise? - Yes - Pokemon"
+    when Odpowiedz(pytanie == "A Nintendo franchise?", odpowiedz == "Yes")
+    then Interfejs.polec("Pokemon");
+end
+
+rule "A Nintendo franchise? - No - Adventures of Sonic the Hedgehog"
+    when Odpowiedz(pytanie == "A Nintendo franchise?", odpowiedz == "No")
+    then Interfejs.polec("Adventures of Sonic the Hedgehog");
+end
+
+rule "A Nintendo franchise? - No - Megaman"
+    when Odpowiedz(pytanie == "A Nintendo franchise?", odpowiedz == "No")
+    then Interfejs.polec("Megaman");
+end
+
+rule "A Nintendo franchise? - No - Mortal Kombat Defenders of the Realm"
+    when Odpowiedz(pytanie == "A Nintendo franchise?", odpowiedz == "No")
+    then Interfejs.polec("Mortal Kombat Defenders of the Realm");
+end
+
+rule "A Nintendo franchise? - No - Double Dragon"
+    when Odpowiedz(pytanie == "A Nintendo franchise?", odpowiedz == "No")
+    then Interfejs.polec("Double Dragon");
+end
+
+rule "A Nintendo franchise? - No - Wing Commander Academy"
+    when Odpowiedz(pytanie == "A Nintendo franchise?", odpowiedz == "No")
+    then Interfejs.polec("Wing Commander Academy");
+end
+
+rule "A Nintendo franchise? - No - Street Fighter"
+    when Odpowiedz(pytanie == "A Nintendo franchise?", odpowiedz == "No")
+    then Interfejs.polec("Street Fighter");
+end
+
+rule "A cartoon based on a video game? - No - A celebrity?"
+    when
+        Odpowiedz(pytanie == "A cartoon based on a video game?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("A celebrity?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("A celebrity?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "A celebrity? - Yes - Chuck Norris: Karate Kommandos"
+    when Odpowiedz(pytanie == "A celebrity?", odpowiedz == "Yes")
+    then Interfejs.polec("Chuck Norris: Karate Kommandos");
+end
+
+rule "A celebrity? - Yes - Mister T"
+    when Odpowiedz(pytanie == "A celebrity?", odpowiedz == "Yes")
+    then Interfejs.polec("Mister T");
+end
+
+rule "A celebrity? - No - Animals, furries, and the like?"
+    when
+        Odpowiedz(pytanie == "A celebrity?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No"); // Dodano 'No' dla ci¹g³oœci, choæ orygina³ nie precyzowa³
+        
+        String odp = Interfejs.zapytaj("Animals, furries, and the like?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Animals, furries, and the like?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Animals, furries, and the like? - Yes - Cats?"
+    when
+        Odpowiedz(pytanie == "Animals, furries, and the like?", odpowiedz == "Yes")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Cats?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Cats?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Cats? - Yes - ThunderCats"
+    when Odpowiedz(pytanie == "Cats?", odpowiedz == "Yes")
+    then Interfejs.polec("ThunderCats");
+end
+
+rule "Cats? - Yes - Swat Kats"
+    when Odpowiedz(pytanie == "Cats?", odpowiedz == "Yes")
+    then Interfejs.polec("Swat Kats");
+end
+
+rule "Cats? - No - Rodents?"
+    when
+        Odpowiedz(pytanie == "Cats?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Rodents?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Rodents?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Rodents? - Yes - Biker Mice from Mars"
+    when Odpowiedz(pytanie == "Rodents?", odpowiedz == "Yes")
+    then Interfejs.polec("Biker Mice from Mars");
+end
+
+rule "Rodents? - Yes - Danger Mouse"
+    when Odpowiedz(pytanie == "Rodents?", odpowiedz == "Yes")
+    then Interfejs.polec("Danger Mouse");
+end
+
+rule "Rodents? - Yes - Chip N Dale Rescue Rangers"
+    when Odpowiedz(pytanie == "Rodents?", odpowiedz == "Yes")
+    then Interfejs.polec("Chip N Dale Rescue Rangers");
+end
+
+rule "Rodents? - No - Dinosaurs?"
+    when
+        Odpowiedz(pytanie == "Rodents?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Dinosaurs?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Dinosaurs?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Dinosaurs? - Yes - Cadillacs and Dinosaurs"
+    when Odpowiedz(pytanie == "Dinosaurs?", odpowiedz == "Yes")
+    then Interfejs.polec("Cadillacs and Dinosaurs");
+end
+
+rule "Dinosaurs? - Yes - Extreme Dinosaurs"
+    when Odpowiedz(pytanie == "Dinosaurs?", odpowiedz == "Yes")
+    then Interfejs.polec("Extreme Dinosaurs");
+end
+
+rule "Dinosaurs? - Yes - Dino Riders"
+    when Odpowiedz(pytanie == "Dinosaurs?", odpowiedz == "Yes")
+    then Interfejs.polec("Dino Riders");
+end
+
+rule "Dinosaurs? - Yes - Dinosaurcers"
+    when Odpowiedz(pytanie == "Dinosaurs?", odpowiedz == "Yes")
+    then Interfejs.polec("Dinosaurcers");
+end
+
+rule "Dinosaurs? - No - Ducks?"
+    when
+        Odpowiedz(pytanie == "Dinosaurs?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Ducks?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Ducks?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Ducks? - Yes - Count Duckula"
+    when Odpowiedz(pytanie == "Ducks?", odpowiedz == "Yes")
+    then Interfejs.polec("Count Duckula");
+end
+
+rule "Ducks? - Yes - DuckTales"
+    when Odpowiedz(pytanie == "Ducks?", odpowiedz == "Yes")
+    then Interfejs.polec("DuckTales");
+end
+
+rule "Ducks? - Yes - Darkwing Duck"
+    when Odpowiedz(pytanie == "Ducks?", odpowiedz == "Yes")
+    then Interfejs.polec("Darkwing Duck");
+end
+
+rule "Ducks? - No - Bears?"
+    when
+        Odpowiedz(pytanie == "Ducks?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Bears?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Bears?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Bears? - Yes - TaleSpin"
+    when Odpowiedz(pytanie == "Bears?", odpowiedz == "Yes")
+    then Interfejs.polec("TaleSpin");
+end
+
+rule "Bears? - Yes - Disney's Adventures of the Gummi Bears"
+    when Odpowiedz(pytanie == "Bears?", odpowiedz == "Yes")
+    then Interfejs.polec("Disney's Adventures of the Gummi Bears");
+end
+
+rule "Bears? - Yes - The Care Bears"
+    when Odpowiedz(pytanie == "Bears?", odpowiedz == "Yes")
+    then Interfejs.polec("The Care Bears");
+end
+
+rule "Bears? - No - Monkeys?"
+    when
+        Odpowiedz(pytanie == "Bears?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Monkeys?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Monkeys?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Monkeys? - Yes - Captain Simian and the Space Monkeys"
+    when Odpowiedz(pytanie == "Monkeys?", odpowiedz == "Yes")
+    then Interfejs.polec("Captain Simian and the Space Monkeys");
+end
+
+rule "Monkeys? - No - Cows?"
+    when
+        Odpowiedz(pytanie == "Monkeys?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        
+        String odp = Interfejs.zapytaj("Cows?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Cows?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Cows? - Yes - Wild West Cowboys of Moo Mesa"
+    when
+        Odpowiedz(pytanie == "Cows?", odpowiedz == "Yes")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Wild West Cowboys of Moo Mesa", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Wild West Cowboys of Moo Mesa");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Wild West Cowboys of Moo Mesa - No - Godless abominations?"
+    when
+        Odpowiedz(pytanie == "Wild West Cowboys of Moo Mesa", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Godless abominations?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Godless abominations?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Godless abominations? - Yes - Smurfs"
+    when Odpowiedz(pytanie == "Godless abominations?", odpowiedz == "Yes")
+    then Interfejs.polec("Smurfs");
+end
+
+rule "Godless abominations? - Yes - Snorks"
+    when Odpowiedz(pytanie == "Godless abominations?", odpowiedz == "Yes")
+    then Interfejs.polec("Snorks");
+end
+
+rule "Godless abominations? - No - Teenage Mutant Ninja Turtles"
+    when Odpowiedz(pytanie == "Godless abominations?", odpowiedz == "No")
+    then Interfejs.polec("Teenage Mutant Ninja Turtles");
+end
+
+rule "Godless abominations? - No - Street Sharks"
+    when Odpowiedz(pytanie == "Godless abominations?", odpowiedz == "No")
+    then Interfejs.polec("Street Sharks");
+end
+
+rule "Godless abominations? - No - Gargoyles"
+    when Odpowiedz(pytanie == "Godless abominations?", odpowiedz == "No")
+    then Interfejs.polec("Gargoyles");
+end
+
+rule "A cartoon based on a video game? - No - Do you dig giant robots?"
+    when
+        Odpowiedz(pytanie == "A cartoon based on a video game?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Do you dig giant robots?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Do you dig giant robots?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Do you dig giant robots? - Yes - Robotech"
+    when Odpowiedz(pytanie == "Do you dig giant robots?", odpowiedz == "Yes")
+    then Interfejs.polec("Robotech");
+end
+
+rule "Do you dig giant robots? - Yes - Voltron"
+    when Odpowiedz(pytanie == "Do you dig giant robots?", odpowiedz == "Yes")
+    then Interfejs.polec("Voltron");
+end
+
+rule "Do you dig giant robots? - Yes - Transformers"
+    when Odpowiedz(pytanie == "Do you dig giant robots?", odpowiedz == "Yes")
+    then Interfejs.polec("Transformers");
+end
+
+rule "Do you dig giant robots? - Yes - Challenge of the GoBots"
+    when Odpowiedz(pytanie == "Do you dig giant robots?", odpowiedz == "Yes")
+    then Interfejs.polec("Challenge of the GoBots");
+end
+
+rule "Do you dig giant robots? - No - A cartoon based on a movie?"
+    when
+        Odpowiedz(pytanie == "Do you dig giant robots?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("A cartoon based on a movie?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("A cartoon based on a movie?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "A cartoon based on a movie? - Yes - An R"
+    when
+        Odpowiedz(pytanie == "A cartoon based on a movie?", odpowiedz == "Yes")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("An R", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("An R");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "An R - Yes - Rambo and the Force of Freedom"
+    when Odpowiedz(pytanie == "An R", odpowiedz == "Yes")
+    then Interfejs.polec("Rambo and the Force of Freedom");
+end
+
+rule "An R - Yes - Robocop: The Animated Series"
+    when Odpowiedz(pytanie == "An R", odpowiedz == "Yes")
+    then Interfejs.polec("Robocop: The Animated Series");
+end
+
+rule "An R - Yes - Highlander: The Animated Series"
+    when Odpowiedz(pytanie == "An R", odpowiedz == "Yes")
+    then Interfejs.polec("Highlander: The Animated Series");
+end
+
+rule "An R - No - The Real Ghostbusters"
+    when Odpowiedz(pytanie == "An R", odpowiedz == "No")
+    then Interfejs.polec("The Real Ghostbusters");
+end
+
+rule "An R - No - Extreme Ghostbusters"
+    when Odpowiedz(pytanie == "An R", odpowiedz == "No")
+    then Interfejs.polec("Extreme Ghostbusters");
+end
+
+rule "An R - No - Star Wars: Ewoks"
+    when Odpowiedz(pytanie == "An R", odpowiedz == "No")
+    then Interfejs.polec("Star Wars: Ewoks");
+end
+
+rule "An R - No - Star Wars: Droids"
+    when Odpowiedz(pytanie == "An R", odpowiedz == "No")
+    then Interfejs.polec("Star Wars: Droids");
+end
+
+rule "An R - No - James Bond Jr."
+    when Odpowiedz(pytanie == "An R", odpowiedz == "No")
+    then Interfejs.polec("James Bond Jr.");
+end
+
+rule "A cartoon based on a movie? - No - Do you want a post"
+    when
+        Odpowiedz(pytanie == "A cartoon based on a movie?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Do you want a post", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Do you want a post");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Do you want a post - Yes - Highlander: The Animated Series"
+    when Odpowiedz(pytanie == "Do you want a post", odpowiedz == "Yes")
+    then Interfejs.polec("Highlander: The Animated Series");
+end
+
+rule "Do you want a post - Yes - Thundarr the Barbarian"
+    when Odpowiedz(pytanie == "Do you want a post", odpowiedz == "Yes")
+    then Interfejs.polec("Thundarr the Barbarian");
+end
+
+rule "Do you want a post - Yes - Cadillacs and Dinosaurs"
+    when Odpowiedz(pytanie == "Do you want a post", odpowiedz == "Yes")
+    then Interfejs.polec("Cadillacs and Dinosaurs");
+end
+
+rule "Do you want a post - Yes - Spiral Zone"
+    when Odpowiedz(pytanie == "Do you want a post", odpowiedz == "Yes")
+    then Interfejs.polec("Spiral Zone");
+end
+
+rule "Do you want a post - No - Swords and sorcery?"
+    when
+        Odpowiedz(pytanie == "Do you want a post", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Swords and sorcery?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Swords and sorcery?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Swords and sorcery? - Yes - The Pirates of Dark Water"
+    when Odpowiedz(pytanie == "Swords and sorcery?", odpowiedz == "Yes")
+    then Interfejs.polec("The Pirates of Dark Water");
+end
+
+rule "Swords and sorcery? - Yes - Thundarr the Barbarian"
+    when Odpowiedz(pytanie == "Swords and sorcery?", odpowiedz == "Yes")
+    then Interfejs.polec("Thundarr the Barbarian");
+end
+
+rule "Swords and sorcery? - Yes - Visionaries"
+    when Odpowiedz(pytanie == "Swords and sorcery?", odpowiedz == "Yes")
+    then Interfejs.polec("Visionaries");
+end
+
+rule "Swords and sorcery? - Yes - Dungeons & Dragons"
+    when Odpowiedz(pytanie == "Swords and sorcery?", odpowiedz == "Yes")
+    then Interfejs.polec("Dungeons & Dragons");
+end
+
+rule "Swords and sorcery? - Yes - She"
+    when Odpowiedz(pytanie == "Swords and sorcery?", odpowiedz == "Yes")
+    then Interfejs.polec("She");
+end
+
+rule "Swords and sorcery? - Yes - Conan the Adventurer"
+    when Odpowiedz(pytanie == "Swords and sorcery?", odpowiedz == "Yes")
+    then Interfejs.polec("Conan the Adventurer");
+end
+
+rule "Swords and sorcery? - Yes - He"
+    when Odpowiedz(pytanie == "Swords and sorcery?", odpowiedz == "Yes")
+    then Interfejs.polec("He");
+end
+
+rule "Swords and sorcery? - Yes - King Arthur and the Knights of Justice"
+    when Odpowiedz(pytanie == "Swords and sorcery?", odpowiedz == "Yes")
+    then Interfejs.polec("King Arthur and the Knights of Justice");
+end
+
+rule "Swords and sorcery? - No - Military and law enforcement?"
+    when
+        Odpowiedz(pytanie == "Swords and sorcery?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Military and law enforcement?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Military and law enforcement?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Military and law enforcement? - Yes - Robocop: The Animated Series"
+    when Odpowiedz(pytanie == "Military and law enforcement?", odpowiedz == "Yes")
+    then Interfejs.polec("Robocop: The Animated Series");
+end
+
+rule "Military and law enforcement? - Yes - Rambo and the Force of Freedom"
+    when Odpowiedz(pytanie == "Military and law enforcement?", odpowiedz == "Yes")
+    then Interfejs.polec("Rambo and the Force of Freedom");
+end
+
+rule "Military and law enforcement? - Yes - M.A.S.K."
+    when Odpowiedz(pytanie == "Military and law enforcement?", odpowiedz == "Yes")
+    then Interfejs.polec("M.A.S.K.");
+end
+
+rule "Military and law enforcement? - Yes - G.I. Joe"
+    when Odpowiedz(pytanie == "Military and law enforcement?", odpowiedz == "Yes")
+    then Interfejs.polec("G.I. Joe");
+end
+
+rule "Military and law enforcement? - Yes - C.O.P.S."
+    when Odpowiedz(pytanie == "Military and law enforcement?", odpowiedz == "Yes")
+    then Interfejs.polec("C.O.P.S.");
+end
+
+rule "Military and law enforcement? - Yes - Spiral Zone"
+    when Odpowiedz(pytanie == "Military and law enforcement?", odpowiedz == "Yes")
+    then Interfejs.polec("Spiral Zone");
+end
+
+rule "Military and law enforcement? - Yes - Centurions"
+    when Odpowiedz(pytanie == "Military and law enforcement?", odpowiedz == "Yes")
+    then Interfejs.polec("Centurions");
+end
+
+rule "Military and law enforcement? - Yes - Sam & Max: Freelance Police"
+    when Odpowiedz(pytanie == "Military and law enforcement?", odpowiedz == "Yes")
+    then Interfejs.polec("Sam & Max: Freelance Police");
+end
+
+rule "Military and law enforcement? - Yes - Inspector Gadget"
+    when Odpowiedz(pytanie == "Military and law enforcement?", odpowiedz == "Yes")
+    then Interfejs.polec("Inspector Gadget");
+end
+
+rule "Military and law enforcement? - Yes - Sky Commanders"
+    when Odpowiedz(pytanie == "Military and law enforcement?", odpowiedz == "Yes")
+    then Interfejs.polec("Sky Commanders");
+end
+
+rule "Military and law enforcement? - Yes - SilverHawks"
+    when Odpowiedz(pytanie == "Military and law enforcement?", odpowiedz == "Yes")
+    then Interfejs.polec("SilverHawks");
+end
+
+rule "Military and law enforcement? - Yes - Exosquad"
+    when Odpowiedz(pytanie == "Military and law enforcement?", odpowiedz == "Yes")
+    then Interfejs.polec("Exosquad");
+end
+
+rule "Military and law enforcement? - Yes - The Adventures of the Galaxy Rangers"
+    when Odpowiedz(pytanie == "Military and law enforcement?", odpowiedz == "Yes")
+    then Interfejs.polec("The Adventures of the Galaxy Rangers");
+end
+
+rule "Military and law enforcement? - Yes - BraveStarr"
+    when Odpowiedz(pytanie == "Military and law enforcement?", odpowiedz == "Yes")
+    then Interfejs.polec("BraveStarr");
+end
+
+rule "Military and law enforcement? - No - Space?"
+    when
+        Odpowiedz(pytanie == "Military and law enforcement?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Space?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Space?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Space? - Yes - Captain Simian and the Space Monkeys"
+    when Odpowiedz(pytanie == "Space?", odpowiedz == "Yes")
+    then Interfejs.polec("Captain Simian and the Space Monkeys");
+end
+
+rule "Space? - Yes - Jayce and the Wheeled Warriors"
+    when Odpowiedz(pytanie == "Space?", odpowiedz == "Yes")
+    then Interfejs.polec("Jayce and the Wheeled Warriors");
+end
+
+rule "Space? - Yes - Exosquad"
+    when Odpowiedz(pytanie == "Space?", odpowiedz == "Yes")
+    then Interfejs.polec("Exosquad");
+end
+
+rule "Space? - Yes - SilverHawks"
+    when Odpowiedz(pytanie == "Space?", odpowiedz == "Yes")
+    then Interfejs.polec("SilverHawks");
+end
+
+rule "Space? - Yes - The Adventures of the Galaxy Rangers"
+    when Odpowiedz(pytanie == "Space?", odpowiedz == "Yes")
+    then Interfejs.polec("The Adventures of the Galaxy Rangers");
+end
+
+rule "Space? - Yes - BraveStarr"
+    when Odpowiedz(pytanie == "Space?", odpowiedz == "Yes")
+    then Interfejs.polec("BraveStarr");
+end
+
+rule "Space? - No - Cowboys?"
+    when
+        Odpowiedz(pytanie == "Space?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Cowboys?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Cowboys?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Cowboys? - Yes - The Adventures of the Galaxy Rangers"
+    when Odpowiedz(pytanie == "Cowboys?", odpowiedz == "Yes")
+    then Interfejs.polec("The Adventures of the Galaxy Rangers");
+end
+
+rule "Cowboys? - Yes - BraveStarr"
+    when Odpowiedz(pytanie == "Cowboys?", odpowiedz == "Yes")
+    then Interfejs.polec("BraveStarr");
+end
+
+rule "Cowboys? - Yes - Wild West Cowboys of Moo Mesa"
+    when Odpowiedz(pytanie == "Cowboys?", odpowiedz == "Yes")
+    then Interfejs.polec("Wild West Cowboys of Moo Mesa");
+end
+
+rule "Cowboys? - No - Do you want to understand what's going on?"
+    when
+        Odpowiedz(pytanie == "Cowboys?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Do you want to understand what's going on?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Do you want to understand what's going on?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Do you want to understand what's going on? - Yes - Kids doing awesome stuff?"
+    when
+        Odpowiedz(pytanie == "Do you want to understand what's going on?", odpowiedz == "Yes")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        
+        String odp = Interfejs.zapytaj("Kids doing awesome stuff?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Kids doing awesome stuff?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Kids doing awesome stuff? - Yes - In an educational manner?"
+    when
+        Odpowiedz(pytanie == "Kids doing awesome stuff?", odpowiedz == "Yes")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("In an educational manner?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("In an educational manner?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "In an educational manner? - Yes - The Magic School Bus"
+    when Odpowiedz(pytanie == "In an educational manner?", odpowiedz == "Yes")
+    then Interfejs.polec("The Magic School Bus");
+end
+
+rule "In an educational manner? - Yes - Captain Planet and the Planeteers"
+    when Odpowiedz(pytanie == "In an educational manner?", odpowiedz == "Yes")
+    then Interfejs.polec("Captain Planet and the Planeteers");
+end
+
+rule "In an educational manner? - No - Bionic Six"
+    when Odpowiedz(pytanie == "In an educational manner?", odpowiedz == "No")
+    then Interfejs.polec("Bionic Six");
+end
+
+rule "In an educational manner? - No - The Real Adventures of Jonny Quest"
+    when Odpowiedz(pytanie == "In an educational manner?", odpowiedz == "No")
+    then Interfejs.polec("The Real Adventures of Jonny Quest");
+end
+
+rule "In an educational manner? - No - Mighty Max"
+    when Odpowiedz(pytanie == "In an educational manner?", odpowiedz == "No")
+    then Interfejs.polec("Mighty Max");
+end
+
+rule "Kids doing awesome stuff? - Yes - Do you like computers?"
+    when
+        Odpowiedz(pytanie == "Kids doing awesome stuff?", odpowiedz == "Yes")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Do you like computers?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Do you like computers?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Do you like computers? - Yes - ReBoot"
+    when Odpowiedz(pytanie == "Do you like computers?", odpowiedz == "Yes")
+    then Interfejs.polec("ReBoot");
+end
+
+rule "Do you like computers? - No - Something truly outrageous?"
+    when
+        Odpowiedz(pytanie == "Do you like computers?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("Something truly outrageous?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("Something truly outrageous?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "Something truly outrageous? - Yes - Jem"
+    when Odpowiedz(pytanie == "Something truly outrageous?", odpowiedz == "Yes")
+    then Interfejs.polec("Jem");
+end
+
+rule "Something truly outrageous? - No - The undead?"
+    when
+        Odpowiedz(pytanie == "Something truly outrageous?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("The undead?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("The undead?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "The undead? - Yes - Mummies Alive"
+    when Odpowiedz(pytanie == "The undead?", odpowiedz == "Yes")
+    then Interfejs.polec("Mummies Alive");
+end
+
+rule "The undead? - Yes - Skeleton Warriors"
+    when Odpowiedz(pytanie == "The undead?", odpowiedz == "Yes")
+    then Interfejs.polec("Skeleton Warriors");
+end
+
+rule "The undead? - No - The World of David the Gnome"
+    when Odpowiedz(pytanie == "The undead?", odpowiedz == "No")
+    then Interfejs.polec("The World of David the Gnome");
+end
+
+rule "Do you want to understand what's going on? - No - In an awesome way?"
+    when
+        Odpowiedz(pytanie == "Do you want to understand what's going on?", odpowiedz == "No")
+    then
+        ArrayList<String> warianty = new ArrayList<>();
+        warianty.add("Yes");
+        warianty.add("No");
+        
+        String odp = Interfejs.zapytaj("In an awesome way?", warianty);
+        
+        Odpowiedz o = new Odpowiedz();
+        o.setPytanie("In an awesome way?");
+        o.setOdpowiedz(odp);
+        insert(o);
+end
+
+rule "In an awesome way? - Yes - Inhumanoids"
+    when Odpowiedz(pytanie == "In an awesome way?", odpowiedz == "Yes")
+    then Interfejs.polec("Inhumanoids");
+end
+
+rule "In an awesome way? - No - Aeon Flux"
+    when Odpowiedz(pytanie == "In an awesome way?", odpowiedz == "No")
+    then Interfejs.polec("Aeon Flux");
+end
